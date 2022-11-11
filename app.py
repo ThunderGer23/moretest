@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 #from routes.user import user
+from routes.red import red
 from docs import tags_metadata
 
 
@@ -15,3 +16,6 @@ app = FastAPI(
     },
     openapi_tags= tags_metadata
 )
+
+# Importing the `user` module from the `routes` folder.
+app.include_router(red)
