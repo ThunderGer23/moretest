@@ -13,6 +13,15 @@ from tensorflow.python.keras import layers
 from tensorflow.python.keras import regularizers
 from urllib.request import urlopen
 
+def interpretacion_cita ( ref ):
+  interprete = []
+  for cita in ref:
+    if cita >=0.5 : 
+      interprete.append('cita ieee')
+    if cita<0.5 : 
+      interprete.append('cita apa')
+  return interprete
+
 """
     DATASET PARA CITAS
 """
@@ -100,11 +109,5 @@ citas = [
     'Bloot, S. J., & Pye, K. (2001). “Gradistat: A gran size distribution and statics package for the analysis of unconsolidated sediments”. Earth Surface Processes and Landforms, 261.',
 ]
 
-def interpretacion_cita ( ref ):
-  interprete = []
-  for cita in ref:
-    if cita >=0.5 : 
-      interprete.append('cita ieee')
-    if cita<0.5 : 
-      interprete.append('cita apa')
-  return interprete
+analisis = model.predict(citas)
+interpretacion_cita(analisis)
