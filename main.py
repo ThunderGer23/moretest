@@ -1,15 +1,14 @@
 import tensorflow_hub as hub 
 import tensorflow_text as text
 import keras
-import tensorflow
 
 def interpretacion_cita ( ref ):
   interprete = []
   for cita in ref:
     if cita >=0.5 : 
-      interprete.append('cita ieee')
+      interprete.append('CITA IEEE')
     if cita<0.5 : 
-      interprete.append('cita apa')
+      interprete.append('CITA APA')
   return interprete
 
 def main(): 
