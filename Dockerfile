@@ -1,4 +1,4 @@
-FROM python
+FROM python:3.9.6
 
 WORKDIR /code
 
@@ -6,9 +6,9 @@ COPY ./requirements.txt /code/requirements.txt
 
 ENV PYHTONUNBUFFERED=1
 
-RUN apt-get -y install ffmpeg libsm6 libxext6 # required for opencv
+RUN python -m pip install --upgrade pip
 
-RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
+RUN pip install -U --no-cache-dir -r /code/requirements.txt
 
 COPY ./ /code
 

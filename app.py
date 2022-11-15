@@ -1,5 +1,4 @@
 from fastapi import FastAPI
-#from routes.user import user
 from routes.red import red
 from docs import tags_metadata
 
