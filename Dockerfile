@@ -8,7 +8,9 @@ ENV PYHTONUNBUFFERED=1
 
 RUN python -m pip install --upgrade pip
 
-RUN pip install -U --no-cache-dir -r /code/requirements.txt
+#RUN pip install -U --no-cache-dir -r /code/requirements.txt
+
+RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
 
 COPY ./ /code
 
