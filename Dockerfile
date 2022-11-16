@@ -1,3 +1,5 @@
+# Configuración para levantar el FastAPI directamente con Python 3.9.6
+
 FROM python:3.9.6
 
 WORKDIR /code
