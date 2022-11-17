@@ -1,4 +1,4 @@
-# Configuración para levantar el FastAPI desde ubuntu
+# Configuración para levantar el FastAPI desde tensorflow
 FROM tensorflow/tensorflow:2.6.0-gpu
 #ENV DEBIAN_FRONTEND=noninteractive
 
