@@ -1,37 +1,32 @@
 # Configuración para levantar el FastAPI desde tensorflow
-FROM tensorflow/tensorflow:2.6.0-gpu
-#ENV DEBIAN_FRONTEND=noninteractive
+FROM ubuntu:18.04
+ENV DEBIAN_FRONTEND=noninteractive
 
 WORKDIR /code
 
-RUN apt-get update\
-    && apt-get install -y cudatoolkit cudnn tensorflow tensorflow-gpu
+RUN apt-get update
+RUN apt-get install -y wget make gcc gnupg2 gnupg gnupg1
+RUN apt-key del 7fa2af80
+RUN wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/cuda-keyring_1.0-1_all.deb
+RUN dpkg -i cuda-keyring_1.0-1_all.deb
+RUN apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/3bf863cc.pub
 
-RUN apt-get install -y wget make gcc 
-#p7zip
+RUN apt-get update \
+  && apt-get install -y python3 python3-distutils python3-pip \
+  && cd /usr/local/bin \
+  && ln -s /usr/bin/python3 python \
+  && pip3 --no-cache-dir install --upgrade pip \
+  && rm -rf /var/lib/apt/lists/* 
 
-RUN wget https://www.python.org/ftp/python/3.9.6/Python-3.9.6.tgz
-RUN tar xzvf Python-3.9.6.tgz
-RUN cd Python-3.9.6 \
-    && ./configure \
-    && make \
-    && make install
-RUN apt-get install python3-pip
-
-RUN cd /usr/local/bin \
-    && ln -s /usr/bin/python3.9.6 python \  
-    && pip3 --no-cache-dir install --upgrade pip \
+RUN pip3 --no-cache-dir install --upgrade pip \
     && rm -rf /var/lib/apt/lists/*
-RUN export LD_LIBRARY_PATH=/usr/local/cuda-10.1/compat/:$LD_LIBRARY_PATH
-
-COPY ./requirements.txt /code/requirements.txt
-
-RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
-
-#RUN 7za x Citas_RN.zip.001
-RUN python -m decompress Citas_RN.zip /code/Citas_RN.h5
+RUN export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/usr/local/cuda/lib64
 
 COPY ./ /code
+
+RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
+#RUN 7za x Citas_RN.zip.001
+RUN python -m decompress Citas_RN.zip /code/Citas_RN.h5
  
 CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000"]
 
