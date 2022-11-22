@@ -25,6 +25,7 @@ custom_objects={'KerasLayer':hub.KerasLayer}
 )
 
 new_model.load_weights('CitasRN_weights.h5')
+new_model.compile(loss='mean_squared_error', optimizer='adam', metrics=['binary_accuracy'])
 
 @red.post('/red')
 def testDeRed(red: Red):
