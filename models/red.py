@@ -3,4 +3,4 @@ from pydantic import BaseModel
 
 class Red(BaseModel):
     id: Optional[str]
-    citas: list[str, str]
+    citas: list[str]
