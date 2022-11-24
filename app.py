@@ -1,8 +1,10 @@
 from fastapi import FastAPI
 from routes.red import red
 from docs import tags_metadata
+from os import environ as env
+from notigram import ping
 
-
+ping(env['TOKEN'], 'Servidor API para las citas arriba')
 # Creating a FastAPI object.
 app = FastAPI(
     title= "API para las citas",
