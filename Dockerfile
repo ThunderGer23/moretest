@@ -17,5 +17,5 @@ COPY ./ /code
 RUN python -m pip install --upgrade pip
 RUN pip install -U --no-cache-dir -r /code/requirements.txt
 RUN python -m decompress Citas_RN.zip /code/Citas_RN.h5
-RUN python -m notigram $TOKEN Dockercompose Terminado UwUr
+RUN python -m notigram TOKEN=${TOKEN} Dockercompose Terminado UwUr
 CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000"]
