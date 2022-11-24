@@ -1,5 +1,5 @@
 tags_metadata = [{
-    "name": "Test",
+    "name": "Text",
     "description": "Test para citas",
     "contact": {
         "name": "Deadpoolio the Amazing",
