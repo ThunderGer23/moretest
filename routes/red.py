@@ -5,7 +5,7 @@ from helpers.model import new_model as model
 
 red = APIRouter()
 
-@red.get('/red', response_model= str, tags=["Text"])
+@red.post('/red', response_model= str, tags=["Text"])
 def testDeRed(red: Red):
     analisis = model.predict(red.citas)
     return interpretacion_cita(analisis)
