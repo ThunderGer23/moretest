@@ -1,1 +1,1 @@
-Moncli = [{},{}]
+MongoCli = 'mongodb://mongo:9jPZNCdV52Zznb0CPYaN@containers-us-west-156.railway.app:7631'
